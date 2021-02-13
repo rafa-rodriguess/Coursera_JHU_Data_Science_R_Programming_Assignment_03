@@ -1,5 +1,5 @@
 best <- function(state, outcome){
-
+        
         ## Read outcome data
         file <- read.csv("outcome-of-care-measures.csv", colClasses = "character")        
         
@@ -17,12 +17,10 @@ best <- function(state, outcome){
         
         # filter by state and outcome not NA, selecting only Hospital name and outcome
         subfile <- subset(file, State == state & !is.na(file[real_outcome]),  select = c("Hospital.Name" ,real_outcome))
-
+        
         # order by outcome and hospital name
         subfile <- subfile[order(subfile[real_outcome], subfile["Hospital.Name"]),]
         
         # get first row of Hospital Name
         subfile[1,1]
 }
-
-
