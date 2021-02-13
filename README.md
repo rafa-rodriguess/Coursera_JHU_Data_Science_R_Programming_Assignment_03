@@ -22,6 +22,8 @@ function should throw an error via the stop function with the exact message “i
 outcome value is passed to best, the function should throw an error via the stop function with the exact
 message “invalid outcome”
 
+Save your code for this function to a file named **best.R**
+
 ## 02 - Ranking hospitals by outcome in a state
 Write a function called rankhospital that takes three arguments: the 2-character abbreviated name of a
 state (state), an outcome (outcome), and the ranking of a hospital in that state for that outcome (num).
@@ -37,6 +39,8 @@ Handling ties. It may occur that multiple hospitals have the same 30-day mortali
 of death. In those cases ties should be broken by using the hospital name. For example, in Texas (“TX”),
 the hospitals with lowest 30-day mortality rate for heart failure are shown here
 
+Save your co de for this function to a file named **rankhospital.R**
+
 ## 03 - Ranking hospitals in all states
 Write a function called rankall that takes two arguments: an outcome name (outcome) and a hospital ranking (num). The function reads the outcome-of-care-measures.csv file and returns a 2-column data frame
 containing the hospital in each state that has the ranking specified in num. For example the function call
@@ -48,3 +52,5 @@ the state name. Hospitals that do not have data on a particular outcome should b
 hospitals when deciding the rankings.
 Handling ties. The rankall function should handle ties in the 30-day mortality rates in the same way
 that the rankhospital function handles ties
+
+Save your co de for this function to a file named **rankall.R**
