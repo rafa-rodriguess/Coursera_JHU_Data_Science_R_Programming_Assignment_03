@@ -1,4 +1,4 @@
-best <- function(state, outcome){
+rankall <- function(outcome, num){
 
         ## Read outcome data
         file <- read.csv("outcome-of-care-measures.csv", colClasses = "character")        
@@ -9,20 +9,38 @@ best <- function(state, outcome){
         if (sum(outcome_test) == 0) stop("invalid outcome")
         real_outcome <- outcome_matrix[outcome_test,2]
         
-        ## Check that outcome is valid
-        if (!(state %in% state.abb)) stop("invalid state")
-        
         # cast outcome
         file[, real_outcome] <- as.numeric(file[, real_outcome])
         
-        # filter by state and outcome not NA, selecting only Hospital name and outcome
-        subfile <- subset(file, State == state & !is.na(file[real_outcome]),  select = c("Hospital.Name" ,real_outcome))
-
-        # order by outcome and hospital name
-        subfile <- subfile[order(subfile[real_outcome], subfile["Hospital.Name"]),]
         
-        # get first row of Hospital Name
-        subfile[1,1]
-}
+        subRank <- function(file, state, real_outcome){
+                # filter by state and outcome not NA, selecting only Hospital name and outcome
+                subfile <- subset(file, State == state & !is.na(file[real_outcome]),  select = c("Hospital.Name" ,"State", real_outcome))
+        
+                # order by outcome and hospital name
+                subfile <- subfile[order(subfile[real_outcome], subfile["Hospital.Name"]),]
+                
+                # get first row of Hospital Name
+                if (!is.numeric(num)){ 
+                        if (!(num %in% c("best","worst"))) stop("invalid ranking position (num argument)")
+                        if (num == "best")   num <- 1
+                        if (num == "worst")  num <- nrow(subfile)
+                }
+                
+                if (nrow(subfile) < num) return(c(NA, state))
+                subfile[num,1:2]
+        }
+        
+        ## For each state, find the hospital of the given rank
+        resp <- data.frame()
+        state.abb <- c(state.abb, "DC")
 
+        for (state in state.abb){
+                resp <- rbind(resp, subRank(file, state, real_outcome))
+        }
+        resp <- resp[order(resp["State"]),]
+        names(resp)[1] <- "hospital"
+        names(resp)[2] <- "state"
+        resp
+}
 
