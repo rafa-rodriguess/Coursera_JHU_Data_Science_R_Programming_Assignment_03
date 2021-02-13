@@ -1,6 +1,6 @@
-# ProgrammingAssignment3
+# Coursera JHU Data Science R Programming Assignment 03
 
-## Finding the b est hospital in a state
+## 01 - Finding the b est hospital in a state
 Write a function called best that take two arguments: the 2-character abbreviated name of a state and an
 outcome name. The function reads the outcome-of-care-measures.csv file and returns a character vector
 with the name of the hospital that has the best (i.e. lowest) 30-day mortality for the specified outcome
@@ -12,17 +12,17 @@ be sorted in alphabetical order and the first hospital in that set should be cho
 and “f” are tied for best, then hospital “b” should be returned).
 The function should use the following template.
 best <- function(state, outcome) {
-## Read outcome data
-## Check that state and outcome are valid
-## Return hospital name in that state with lowest 30-day death
-## rate
+-Read outcome data
+-Check that state and outcome are valid
+-Return hospital name in that state with lowest 30-day death
+-rate
 }
 The function should check the validity of its arguments. If an invalid state value is passed to best, the
 function should throw an error via the stop function with the exact message “invalid state”. If an invalid
 outcome value is passed to best, the function should throw an error via the stop function with the exact
 message “invalid outcome”
 
-## Ranking hospitals by outcome in a state
+## 02 - Ranking hospitals by outcome in a state
 Write a function called rankhospital that takes three arguments: the 2-character abbreviated name of a
 state (state), an outcome (outcome), and the ranking of a hospital in that state for that outcome (num).
 The function reads the outcome-of-care-measures.csv file and returns a character vector with the name
@@ -37,7 +37,7 @@ Handling ties. It may occur that multiple hospitals have the same 30-day mortali
 of death. In those cases ties should be broken by using the hospital name. For example, in Texas (“TX”),
 the hospitals with lowest 30-day mortality rate for heart failure are shown here
 
-## Ranking hospitals in all states
+## 03 - Ranking hospitals in all states
 Write a function called rankall that takes two arguments: an outcome name (outcome) and a hospital ranking (num). The function reads the outcome-of-care-measures.csv file and returns a 2-column data frame
 containing the hospital in each state that has the ranking specified in num. For example the function call
 rankall("heart attack", "best") would return a data frame containing the names of the hospitals that
