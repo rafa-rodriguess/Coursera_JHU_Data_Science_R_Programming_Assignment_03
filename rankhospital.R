@@ -10,6 +10,7 @@ rankhospital <- function(state, outcome, num){
         real_outcome <- outcome_matrix[outcome_test,2]
         
         ## Check that outcome is valid
+        state.abb <- c(state.abb, "DC")
         if (!(state %in% state.abb)) stop("invalid state")
         
         # cast outcome
